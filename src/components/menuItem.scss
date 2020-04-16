@@ -1,0 +1,64 @@
+@import '../variables';
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes hover {
+  from {
+    border: 1px solid transparent;
+  }
+  25% {
+    border-top: 1px solid $color;
+  }
+  35% {
+    border-right: 1px solid $color;
+  }
+  60% {
+    border-bottom: 1px solid $color;
+  }
+  70% {
+    border-left: 1px solid $color;
+  }
+  to {
+    background-color: $lightColor;
+  }
+}
+
+.menu__item {
+  display: inline-block;
+  direction: row;
+  height: 100%;
+  position: relative;
+  
+  &--name {
+    padding: 10px;
+    border: 1px solid transparent;
+    &:hover {
+      animation: hover 500ms linear 0ms 1 normal forwards;
+      border: 1px solid $lightColor;
+    }
+  }
+  &--list {
+    position: absolute;
+    display: none;
+    &:hover ~ .menu__item--name {
+      background-color: $lightColor;
+    }
+  }
+  &.opened {
+    background-color: $selectedColor;
+    .menu__item {
+      &--list {
+        display: block;
+        border: 1px solid transparent;
+        padding: 5px;
+        animation: fadeIn 400ms linear 0ms 1;
+      }
+    }
+  }
+}
